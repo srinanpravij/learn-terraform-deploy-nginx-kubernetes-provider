@@ -24,7 +24,7 @@ variable "cluster_ca_certificate" {
 }
 
 provider "kubernetes" {
-  config_path = "~/.kube/config"
+  config_path = "/home/ubuntu/.kube/config"
 }
 
 resource "kubernetes_deployment" "flaskapp" {
