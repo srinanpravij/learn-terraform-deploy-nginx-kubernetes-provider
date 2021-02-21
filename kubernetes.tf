@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 2.0.1"
     }
+   docker = {
+      source = "kreuzwerker/docker"
+      version = "2.11.0"
+    }
   }
 }
 
@@ -25,6 +29,10 @@ variable "cluster_ca_certificate" {
 
 provider "kubernetes" {
   config_path = "/home/ubuntu/.kube/config"
+}
+
+provider "docker" {
+  host = "tcp://localhost:2376"
 }
 
 resource "kubernetes_deployment" "flaskapp" {
