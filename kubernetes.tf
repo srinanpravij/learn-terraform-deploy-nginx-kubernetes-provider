@@ -28,6 +28,7 @@ variable "cluster_ca_certificate" {
 }
 
 provider "kubernetes" {
+  host = "https://127.0.0.1:35211"
   config_path = "/home/ubuntu/.kube/config"
 }
 
