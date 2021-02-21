@@ -91,7 +91,7 @@ resource "kubernetes_service" "flaskapptf" {
       App = kubernetes_deployment.flaskapptf.spec.0.template.0.metadata[0].labels.App
     }
     port {
-      node_port   = 30202
+      node_port   = 30201
       port        = 8080
       target_port = 8080
     }
