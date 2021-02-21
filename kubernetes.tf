@@ -92,8 +92,8 @@ resource "kubernetes_service" "flaskapptf" {
     }
     port {
       node_port   = 30202
-      port        = 80
-      target_port = 80
+      port        = 8080
+      target_port = 8080
     }
 
     type = "NodePort"
