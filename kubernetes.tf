@@ -36,7 +36,7 @@ provider "docker" {
   host = "tcp://localhost:2376"
 }
 
-resource "kubernetes_deployment" "flaskapp" {
+resource "kubernetes_deployment" "flaskapptf" {
   metadata {
     name = "scalable-flaskapp-tfexample"
     labels = {
@@ -82,16 +82,16 @@ resource "kubernetes_deployment" "flaskapp" {
   }
 }
 
-resource "kubernetes_service" "flaskapp" {
+resource "kubernetes_service" "flaskapptf" {
   metadata {
-    name = "flaskapp-example"
+    name = "flaskapptf-example"
   }
   spec {
     selector = {
-      App = kubernetes_deployment.flaskapp.spec.0.template.0.metadata[0].labels.App
+      App = kubernetes_deployment.flaskapptf.spec.0.template.0.metadata[0].labels.App
     }
     port {
-      node_port   = 30201
+      node_port   = 30202
       port        = 80
       target_port = 80
     }
