@@ -45,7 +45,7 @@ resource "kubernetes_deployment" "flaskapptf" {
   }
 
   spec {
-    replicas = 2
+    replicas = 3
     selector {
       match_labels = {
         App = "ScalableflaskappExample"
