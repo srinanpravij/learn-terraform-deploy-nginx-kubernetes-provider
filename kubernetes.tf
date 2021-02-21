@@ -38,7 +38,7 @@ provider "docker" {
 
 resource "kubernetes_deployment" "flaskapp" {
   metadata {
-    name = "scalable-flaskapp-example"
+    name = "scalable-flaskapp-tfexample"
     labels = {
       App = "ScalableflaskappExample"
     }
