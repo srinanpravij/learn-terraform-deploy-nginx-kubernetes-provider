@@ -37,48 +37,21 @@ provider "docker" {
 }
 
 resource "kubernetes_deployment" "flaskapptf" {
-  metadata {
-    name = "scalable-flaskapptf-example"
-    labels = {
-      App = "ScalableflaskappExample"
-    }
+
+ connection {
+    type  = "ssh"
+    host  = "192.168.1.208"
+    user  = "ubuntu"
+    port  = 22
+    agent = true
   }
 
-  spec {
-    replicas = 3
-    selector {
-      match_labels = {
-        App = "ScalableflaskappExample"
-      }
-    }
-    template {
-      metadata {
-        labels = {
-          App = "ScalableflaskappExample"
-        }
-      }
-      spec {
-        container {
-          image = "vijaya81kp/flask-cicd"
-          name  = "example"
-
-          port {
-            container_port = 8080
-          }
-
-          resources {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "128Mi"
-            }
-          }
-        }
-      }
-    }
+ provisioner "remote-exec" {
+    inline = [
+	  "pwd ",
+      "mkdir testdirectory",
+      "echo here in remote",
+    ]
   }
 }
 
