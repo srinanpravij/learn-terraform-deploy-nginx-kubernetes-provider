@@ -37,8 +37,8 @@ provider "docker" {
 }
 
 resource "kubernetes_deployment" "flaskapptf" {
-
- connection {
+  
+  connection {
     type  = "ssh"
     host  = "192.168.1.208"
     user  = "ubuntu"
@@ -53,6 +53,23 @@ resource "kubernetes_deployment" "flaskapptf" {
       "echo here in remote",
     ]
   }
+    
 }
 
+resource "kubernetes_service" "flaskapptf" {
+  metadata {
+    name = "flaskapptf-example"
+  }
+  spec {
+    selector = {
+      App = kubernetes_deployment.flaskapptf.spec.0.template.0.metadata[0].labels.App
+    }
+    port {
+      node_port   = 30201
+      port        = 8080
+      target_port = 8080
+    }
+
+    type = "NodePort"
+  }
 }
