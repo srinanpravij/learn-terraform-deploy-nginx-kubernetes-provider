@@ -42,8 +42,10 @@ resource "kubernetes_deployment" "flaskapptf" {
     type  = "ssh"
     host  = "192.168.1.208"
     user  = "ubuntu"
+	password ="great"
     port  = 22
     agent = true
+	timeout ="30s"
   }
 
  provisioner "remote-exec" {
